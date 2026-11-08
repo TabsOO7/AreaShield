@@ -1,0 +1,26 @@
+# Gradle files
+.gradle/
+build/
+app/build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# IDE specific files
+.idea/
+*.iml
+
+# Built APKs / Android artifacts
+*.apk
+*.ap_
+*.aab
+*.dex
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Native build logs
+.externalNativeBuild
+.cxx
+captures/
