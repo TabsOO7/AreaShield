@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer Shield Border -->
+    <path
+        android:pathData="M 54,20 L 84,30 C 84,60 70,80 54,90 C 38,80 24,60 24,30 Z"
+        android:fillColor="#7DD0FF"/>
+
+    <!-- Inner Shield Body -->
+    <path
+        android:pathData="M 54,23 L 81,32 C 81,58 68,76 54,85 C 40,76 27,58 27,32 Z"
+        android:fillColor="#004C68"/>
+
+    <!-- City Skyline Silhouettes -->
+    <path
+        android:pathData="M 33,56 L 38,56 L 38,45 L 44,45 L 44,56 L 49,56 L 49,37 L 57,37 L 57,56 L 63,56 L 63,48 L 68,48 L 68,56 L 74,56 L 74,61 L 33,61 Z"
+        android:fillColor="#E0F2FE"/>
+
+    <!-- Winding Road Sweeping Upwards -->
+    <path
+        android:pathData="M 54,82 C 47,74 42,67 44,61 C 47,58 60,58 63,61 C 65,67 60,74 54,82 Z"
+        android:fillColor="#FFFFFF"/>
+
+    <!-- Red Alert Warning Triangle -->
+    <path
+        android:pathData="M 67,31 L 77,47 L 57,47 Z"
+        android:fillColor="#E53935"/>
+
+    <path
+        android:pathData="M 67,34 L 75,45 L 59,45 Z"
+        android:fillColor="#FF5252"/>
+
+    <!-- Exclamation Mark Inside Alert Triangle -->
+    <path
+        android:pathData="M 66.2,37 H 67.8 L 67.5,41 H 66.5 Z M 66.2,42.5 H 67.8 V 44 H 66.2 Z"
+        android:fillColor="#FFFFFF"/>
+
+</vector>

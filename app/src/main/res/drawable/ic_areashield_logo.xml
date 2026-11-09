@@ -1,0 +1,60 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Outer Shield Border -->
+    <path
+        android:pathData="M 50,5 L 88,18 C 88,55 70,82 50,95 C 30,82 12,55 12,18 Z"
+        android:fillColor="#004C68"/>
+
+    <!-- Inner Shield Body -->
+    <path
+        android:pathData="M 50,9 L 84,20 C 84,52 67,77 50,89 C 33,77 16,52 16,20 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="50"
+                android:startY="9"
+                android:endX="50"
+                android:endY="89"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FF0088C6" />
+                <item android:offset="1.0" android:color="#FF003549" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- City Skyline Silhouettes -->
+    <!-- Building 1 -->
+    <path
+        android:pathData="M 24,52 L 30,52 L 30,38 L 38,38 L 38,52 L 44,52 L 44,28 L 54,28 L 54,52 L 62,52 L 62,42 L 68,42 L 68,52 L 76,52 L 76,58 L 24,58 Z"
+        android:fillColor="#E0F2FE"/>
+
+    <!-- Building Windows -->
+    <path
+        android:pathData="M 46,32 H 48 V 35 H 46 Z M 50,32 H 52 V 35 H 50 Z M 46,38 H 48 V 41 H 46 Z M 50,38 H 52 V 41 H 50 Z M 46,44 H 48 V 47 H 46 Z M 50,44 H 52 V 47 H 50 Z"
+        android:fillColor="#003549"/>
+
+    <!-- Winding Road Sweeping Upwards -->
+    <path
+        android:pathData="M 50,85 C 42,75 36,66 38,58 C 42,54 58,54 62,58 C 64,66 58,75 50,85 Z"
+        android:fillColor="#FFFFFF"/>
+
+    <!-- Red Alert Warning Triangle -->
+    <path
+        android:pathData="M 66,20 L 78,40 L 54,40 Z"
+        android:fillColor="#E53935"/>
+
+    <!-- Inner Alert Border -->
+    <path
+        android:pathData="M 66,23 L 75,38 L 57,38 Z"
+        android:fillColor="#FF5252"/>
+
+    <!-- Exclamation Mark Inside Alert Triangle -->
+    <path
+        android:pathData="M 65,27 L 67,27 L 66.7,33 L 65.3,33 Z M 65,35 H 67 V 37 H 65 Z"
+        android:fillColor="#FFFFFF"/>
+
+</vector>

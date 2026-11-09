@@ -16,6 +16,7 @@ import com.tabeni.areashield.model.IncidentReport
 import com.tabeni.areashield.ui.screens.AboutScreen
 import com.tabeni.areashield.ui.screens.HomeScreen
 import com.tabeni.areashield.ui.screens.ReportScreen
+import com.tabeni.areashield.ui.screens.SplashScreen
 import com.tabeni.areashield.ui.theme.AreaShieldTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +38,7 @@ fun AreaShieldApp() {
     val context = LocalContext.current
 
     var currentScreen by rememberSaveable {
-        mutableStateOf("home")
+        mutableStateOf("splash")
     }
 
     val reports = remember {
@@ -47,13 +48,22 @@ fun AreaShieldApp() {
     }
 
     // Handle the Android back button.
-    BackHandler(enabled = currentScreen != "home") {
+    BackHandler(enabled = currentScreen != "home" && currentScreen != "splash") {
         currentScreen = "home"
     }
 
     Scaffold { paddingValues ->
 
         when (currentScreen) {
+
+            "splash" -> {
+                SplashScreen(
+                    modifier = Modifier.padding(paddingValues),
+                    onTimeout = {
+                        currentScreen = "home"
+                    }
+                )
+            }
 
             "home" -> {
                 HomeScreen(

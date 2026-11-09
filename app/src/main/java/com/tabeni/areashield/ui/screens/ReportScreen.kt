@@ -1,5 +1,6 @@
 package com.tabeni.areashield.ui.screens
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -11,8 +12,11 @@ import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tabeni.areashield.model.IncidentReport
+import com.tabeni.areashield.ui.components.AreaShieldBackground
+import com.tabeni.areashield.ui.theme.AreaShieldTheme
 
 @Composable
 fun ReportScreen(
@@ -28,138 +32,140 @@ fun ReportScreen(
 
     val scrollState = rememberScrollState()
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState)
-            .padding(16.dp)
-    ) {
-        Text(
-            text = "Report an Incident",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.semantics { heading() }
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = area,
-            onValueChange = {
-                area = it
-                if (errorMessage.isNotEmpty()) errorMessage = ""
-            },
-            label = { Text("Affected Area") },
-            placeholder = { Text("e.g. Chifubu") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            isError = errorMessage.startsWith("Please enter the affected area")
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
-            value = description,
-            onValueChange = {
-                description = it
-                if (errorMessage.isNotEmpty()) errorMessage = ""
-            },
-            label = { Text("Incident Description") },
-            placeholder = { Text("Describe what happened...") },
-            modifier = Modifier.fillMaxWidth(),
-            minLines = 3,
-            isError = errorMessage.startsWith("Please enter an incident description")
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
-            value = date,
-            onValueChange = {
-                date = it
-                if (errorMessage.isNotEmpty()) errorMessage = ""
-            },
-            label = { Text("Incident Date") },
-            placeholder = { Text("DD/MM/YYYY") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            isError = errorMessage.contains("date")
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
-            value = time,
-            onValueChange = {
-                time = it
-                if (errorMessage.isNotEmpty()) errorMessage = ""
-            },
-            label = { Text("Incident Time") },
-            placeholder = { Text("HH:MM") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            isError = errorMessage.contains("time")
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        if (errorMessage.isNotEmpty()) {
+    AreaShieldBackground(modifier = modifier) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .padding(16.dp)
+        ) {
             Text(
-                text = errorMessage,
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.semantics {
-                    liveRegion = LiveRegionMode.Polite
-                }
+                text = "Report an Incident",
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.semantics { heading() }
             )
-        }
 
-        Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Button(
-            onClick = {
-                val trimmedArea = area.trim()
-                val trimmedDescription = description.trim()
-                val trimmedDate = date.trim()
-                val trimmedTime = time.trim()
+            OutlinedTextField(
+                value = area,
+                onValueChange = {
+                    area = it
+                    if (errorMessage.isNotEmpty()) errorMessage = ""
+                },
+                label = { Text("Affected Area") },
+                placeholder = { Text("e.g. Chifubu") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                isError = errorMessage.startsWith("Please enter the affected area")
+            )
 
-                if (trimmedArea.isBlank()) {
-                    errorMessage = "Please enter the affected area."
-                } else if (trimmedDescription.isBlank()) {
-                    errorMessage = "Please enter an incident description."
-                } else if (trimmedDate.isBlank()) {
-                    errorMessage = "Please enter the incident date."
-                } else if (!isValidDate(trimmedDate)) {
-                    errorMessage = "Please enter a valid date in DD/MM/YYYY format."
-                } else if (trimmedTime.isBlank()) {
-                    errorMessage = "Please enter the incident time."
-                } else if (!isValidTime(trimmedTime)) {
-                    errorMessage = "Please enter a valid time in HH:MM format (e.g. 14:30)."
-                } else {
-                    val newReport = IncidentReport(
-                        area = trimmedArea,
-                        description = trimmedDescription,
-                        date = trimmedDate,
-                        time = trimmedTime
-                    )
-                    onSubmit(newReport)
-                }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .defaultMinSize(minHeight = 48.dp)
-        ) {
-            Text("Submit Report")
-        }
+            Spacer(modifier = Modifier.height(12.dp))
 
-        Spacer(modifier = Modifier.height(8.dp))
+            OutlinedTextField(
+                value = description,
+                onValueChange = {
+                    description = it
+                    if (errorMessage.isNotEmpty()) errorMessage = ""
+                },
+                label = { Text("Incident Description") },
+                placeholder = { Text("Describe what happened...") },
+                modifier = Modifier.fillMaxWidth(),
+                minLines = 3,
+                isError = errorMessage.startsWith("Please enter an incident description")
+            )
 
-        TextButton(
-            onClick = onCancel,
-            modifier = Modifier
-                .fillMaxWidth()
-                .defaultMinSize(minHeight = 48.dp)
-        ) {
-            Text("Cancel")
+            Spacer(modifier = Modifier.height(12.dp))
+
+            OutlinedTextField(
+                value = date,
+                onValueChange = {
+                    date = it
+                    if (errorMessage.isNotEmpty()) errorMessage = ""
+                },
+                label = { Text("Incident Date") },
+                placeholder = { Text("DD/MM/YYYY") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                isError = errorMessage.contains("date")
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            OutlinedTextField(
+                value = time,
+                onValueChange = {
+                    time = it
+                    if (errorMessage.isNotEmpty()) errorMessage = ""
+                },
+                label = { Text("Incident Time") },
+                placeholder = { Text("HH:MM") },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                isError = errorMessage.contains("time")
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            if (errorMessage.isNotEmpty()) {
+                Text(
+                    text = errorMessage,
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.semantics {
+                        liveRegion = LiveRegionMode.Polite
+                    }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Button(
+                onClick = {
+                    val trimmedArea = area.trim()
+                    val trimmedDescription = description.trim()
+                    val trimmedDate = date.trim()
+                    val trimmedTime = time.trim()
+
+                    if (trimmedArea.isBlank()) {
+                        errorMessage = "Please enter the affected area."
+                    } else if (trimmedDescription.isBlank()) {
+                        errorMessage = "Please enter an incident description."
+                    } else if (trimmedDate.isBlank()) {
+                        errorMessage = "Please enter the incident date."
+                    } else if (!isValidDate(trimmedDate)) {
+                        errorMessage = "Please enter a valid date in DD/MM/YYYY format."
+                    } else if (trimmedTime.isBlank()) {
+                        errorMessage = "Please enter the incident time."
+                    } else if (!isValidTime(trimmedTime)) {
+                        errorMessage = "Please enter a valid time in HH:MM format (e.g. 14:30)."
+                    } else {
+                        val newReport = IncidentReport(
+                            area = trimmedArea,
+                            description = trimmedDescription,
+                            date = trimmedDate,
+                            time = trimmedTime
+                        )
+                        onSubmit(newReport)
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .defaultMinSize(minHeight = 48.dp)
+            ) {
+                Text("Submit Report")
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            TextButton(
+                onClick = onCancel,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .defaultMinSize(minHeight = 48.dp)
+            ) {
+                Text("Cancel")
+            }
         }
     }
 }
@@ -190,4 +196,16 @@ private fun isValidTime(timeStr: String): Boolean {
     val minute = parts[1].toIntOrNull() ?: return false
 
     return hour in 0..23 && minute in 0..59
+}
+
+@Preview(showBackground = true, name = "Light Theme")
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark Theme")
+@Composable
+fun ReportScreenPreview() {
+    AreaShieldTheme {
+        ReportScreen(
+            onSubmit = {},
+            onCancel = {}
+        )
+    }
 }
