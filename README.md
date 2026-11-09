@@ -1,5 +1,13 @@
 # AreaShield
 
+## Project Contributors
+
+| Full Name | Student Number |
+| :--- | :--- |
+| Tabeni Munguya | 2410105 |
+
+---
+
 ## 1. Project Overview
 
 AreaShield is an offline Android application prototype designed for residents of Ndola to record and view reports of suspected gang activity and gang-related violence. The application provides community members with a localized platform to document incident details safely and stay informed about reported safety concerns in surrounding areas.
