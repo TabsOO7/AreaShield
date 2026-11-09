@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.tabeni.areashield.data.ReportStorage
 import com.tabeni.areashield.model.IncidentReport
 import com.tabeni.areashield.ui.screens.AboutScreen
@@ -19,6 +20,7 @@ import com.tabeni.areashield.ui.theme.AreaShieldTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         setContent {
